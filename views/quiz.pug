@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  if show
+    form(method='post')
+      p What should I focuse on?
+      ul
+        each item in data
+          li 
+            label=item.title
+            input(type='radio' name='quiz' value=item._id)
+      input(type='submit' value='vote!')
+      p to see result give a vote.
+  else 
+    h1 already voted! 
+    p results:
+    ul
+      each item in data 
+        li #{item.title} #{item.vote} - #{Math.round(item.vote*100/sum)}%
+    p total votes: #{sum}
+
+
